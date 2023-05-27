@@ -2,6 +2,8 @@ import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 import selectAuthor from './selectAuthor';
 
+// eslint-disable-next-line no-console
+
 // USING THIS FORM FOR BOTH CREATE AND UPDATE
 const addBookForm = (obj = {}) => {
   clearDom();
