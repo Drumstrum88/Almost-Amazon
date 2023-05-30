@@ -1,6 +1,7 @@
 // for merged promises
-import { getSingleAuthor } from './authorData';
-import { getSingleBook } from './bookData';
+import { getSingleAuthor, deleteSingleAuthor, getAuthorBooks } from './authorData';
+import { getSingleBook, deleteBook } from './bookData';
+// eslint-disable-next-line import/no-cycle
 
 const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
   getSingleBook(firebaseKey).then((bookObject) => {
@@ -11,4 +12,15 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
   }).catch(reject);
 });
 
+const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getAuthorBooks(firebaseKey).then((authorBooksArray) => {
+    const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
+
+    Promise.all(deleteBookPromises).then(() => {
+      deleteSingleAuthor(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
+
+export { deleteAuthorBooksRelationship, getBookDetails };
 export default getBookDetails;

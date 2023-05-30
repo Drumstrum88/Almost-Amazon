@@ -38,17 +38,6 @@ const navigationEvents = () => {
       // MAKE A CALL TO THE API TO FILTER ON THE BOOKS
       // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
       // OTHERWISE SHOW THE STORE
-      getBooks().then((booksArray) => {
-        const filteredBooks = booksArray.filter((book) => book.title.toLowerCase().includes(searchValue)
-          || book.sale.toLowerCase().includes(searchValue)
-          || book.price.toLowerCase().includes(searchValue)
-          || book.author_id.toLowerCase().includes(searchValue));
-        if (filteredBooks.length) {
-          showBooks(filteredBooks);
-        } else {
-          showBooks([]);
-        }
-      });
       document.querySelector('#search').value = '';
     }
   });
