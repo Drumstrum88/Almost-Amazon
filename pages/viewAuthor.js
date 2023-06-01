@@ -36,5 +36,4 @@ const viewAuthorDetails = (firebaseKey) => {
     .catch((err) => console.warn(err));
 };
 
-export default renderAuthorDetails;
-export { viewAuthorDetails };
+export { viewAuthorDetails, renderAuthorDetails };

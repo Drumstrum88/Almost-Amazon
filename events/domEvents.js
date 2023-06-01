@@ -20,7 +20,6 @@ const domEvents = () => {
       if (window.confirm('Want to delete?')) {
         console.warn('CLICKED DELETE BOOK', e.target.id);
         const [, fireBaseKey] = e.target.id.split('--');
-
         deleteBook(fireBaseKey).then(() => {
           getBooks().then(showBooks);
         });
